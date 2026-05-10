@@ -53,11 +53,11 @@ export const createApprehensionSchema = z.object({
   caseNumber: z.string().min(1, 'Case number is required'),
   driver: driverSchema,
   violation: z.string().min(1, 'Violation is required'),
-  mvType: z.string().min(1, 'MV type is required'),
   plateNumber: z.string().min(1, 'Plate number is required'),
   placeOfApprehension: z.string().min(1, 'Place of apprehension is required'),
   // Optional fields
   timeOfApprehension: z.string().nullable().optional(),
+  mvType: z.string().nullable().optional(),
   confiscatedItem: confiscatedItemSchema.optional(),
   restrictionCode: z.string().nullable().optional(),
   conditions: z.string().nullable().optional(),
