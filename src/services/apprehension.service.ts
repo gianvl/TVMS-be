@@ -218,7 +218,7 @@ export const updateApprehension = async (
   const existing = await Apprehension.findById(id);
   if (!existing) return null;
 
-  const updateData: Partial<IApprehension> = { ...input };
+  const updateData: UpdateApprehensionInput & { daysInterval?: number } = { ...input };
 
   // Recalculate daysInterval if either date changes
   const dateOfSubmission = input.dateOfSubmission ?? existing.dateOfSubmission;

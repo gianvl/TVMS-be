@@ -41,24 +41,24 @@ const driverSchema = z.object({
 }).strict();
 
 const confiscatedItemSchema = z.object({
-  type: z.string().min(1, 'Confiscated item type is required'),
-  number: z.string().min(1, 'Confiscated item number is required'),
+  type: z.string().nullable().optional(),
+  number: z.string().nullable().optional(),
 }).strict();
 
 export const createApprehensionSchema = z.object({
   dateOfSubmission: z.coerce.date(),
   dateOfApprehension: z.coerce.date(),
-  timeOfApprehension: z.string().min(1, 'Time of apprehension is required'),
   agency: z.string().min(1, 'Agency is required'),
   apprehendingOfficer: z.string().min(1, 'Apprehending officer is required'),
   caseNumber: z.string().min(1, 'Case number is required'),
   driver: driverSchema,
   violation: z.string().min(1, 'Violation is required'),
-  confiscatedItem: confiscatedItemSchema,
   mvType: z.string().min(1, 'MV type is required'),
   plateNumber: z.string().min(1, 'Plate number is required'),
   placeOfApprehension: z.string().min(1, 'Place of apprehension is required'),
   // Optional fields
+  timeOfApprehension: z.string().nullable().optional(),
+  confiscatedItem: confiscatedItemSchema.optional(),
   restrictionCode: z.string().nullable().optional(),
   conditions: z.string().nullable().optional(),
   nationality: z.string().nullable().optional(),
